@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class AuthController {
 
-    @GetMapping("/home")
-    public String home() {
-        return "This is my home page";
+    @GetMapping("/user")
+    public String user() {
+        return "This is my user page";
     }
 
     @GetMapping("/admin")

@@ -1,4 +1,4 @@
-package com.demo.User;
+package com.demo.user;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -22,7 +22,8 @@ public class User implements org.springframework.security.core.userdetails.UserD
     private String password;
     @Enumerated(EnumType.STRING)
     private UserRole role;
-    private boolean locked;
+    private boolean isLocked;
+    private boolean isEnabled;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -46,7 +47,7 @@ public class User implements org.springframework.security.core.userdetails.UserD
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return !isLocked;
     }
 
     @Override
@@ -56,6 +57,6 @@ public class User implements org.springframework.security.core.userdetails.UserD
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isEnabled;
     }
 }
