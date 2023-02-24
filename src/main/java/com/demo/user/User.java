@@ -1,9 +1,6 @@
 package com.demo.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,14 +13,33 @@ import java.util.Collections;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User implements org.springframework.security.core.userdetails.UserDetails {
+
     @Id
     private int id;
     private String email;
     private String password;
+    private String firstName;
+    private String lastName;
     @Enumerated(EnumType.STRING)
     private UserRole role;
     private boolean isLocked;
     private boolean isEnabled;
+
+    public User(String email,
+                String password,
+                String firstName,
+                String lastName,
+                UserRole role,
+                boolean isLocked,
+                boolean isEnabled) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.role = role;
+        this.isLocked = isLocked;
+        this.isEnabled = isEnabled;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
