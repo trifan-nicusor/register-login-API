@@ -14,17 +14,17 @@ public class RegistrationService {
     private final UserDetailService userDetailService;
 
     public String register(RegistrationRequest request) {
-        boolean isEmailValid = validator.test(request.getEmail());
+        boolean isEmailValid = validator.test(request.email());
 
         if (!isEmailValid) {
             throw new IllegalStateException("Email not valid!");
         }
 
         return userDetailService.signUp(new User(
-                request.getEmail(),
-                request.getPassword(),
-                request.getFirstName(),
-                request.getLastName(),
+                request.email(),
+                request.password(),
+                request.firstName(),
+                request.lastName(),
                 UserRole.USER,
                 false,
                 true

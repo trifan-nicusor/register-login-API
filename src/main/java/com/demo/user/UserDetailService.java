@@ -35,6 +35,6 @@ public class UserDetailService implements UserDetailsService {
 
        userRepository.save(user);
 
-       return "it works";
+       return "It works";
     }
 }
