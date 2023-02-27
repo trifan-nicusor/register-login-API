@@ -8,11 +8,11 @@ import java.util.Collection;
 import java.util.Collections;
 import org.springframework.security.core.userdetails.UserDetails;
 
-@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class User implements UserDetails {
 
     @Id
