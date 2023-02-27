@@ -9,7 +9,6 @@ import com.demo.user.UserRole;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
@@ -53,7 +52,7 @@ public class RegistrationService {
             throw new IllegalStateException("Email already confirmed!");
         }
 
-        LocalDateTime expiredAt = confirmationToken.getExpiresAt();
+        //LocalDateTime expiredAt = confirmationToken.getExpiresAt();
         userDetailService.enableUser(confirmationToken.getUser().getEmail());
 
         return "confirmed";
