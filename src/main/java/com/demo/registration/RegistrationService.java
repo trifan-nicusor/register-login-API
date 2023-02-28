@@ -10,6 +10,8 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @AllArgsConstructor
 public class RegistrationService {
@@ -44,15 +46,16 @@ public class RegistrationService {
 
     @Transactional
     public String confirmToken(String token) {
-        ConfirmationToken confirmationToken = tokenService
-                .getToken(token)
-                .orElseThrow(() -> new IllegalStateException("Token not found!"));
+        ConfirmationToken confirmationToken = tokenService.getToken(token)
+                .orElseThrow(
+                        () -> new IllegalStateException("Token not found!")
+                );
 
         if (confirmationToken.getConfirmedAt() != null) {
             throw new IllegalStateException("Email already confirmed!");
         }
 
-        //LocalDateTime expiredAt = confirmationToken.getExpiresAt();
+        LocalDateTime expiredAt = confirmationToken.getExpiresAt();
         userService.enableUser(confirmationToken.getUser().getEmail());
 
         return "confirmed";
