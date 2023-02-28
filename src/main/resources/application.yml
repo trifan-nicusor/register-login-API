@@ -4,3 +4,19 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password:
+  mail:
+    host: localhost
+    port: 1025
+    username:
+    password:
+    properties:
+      mail:
+        smtp:
+          ssl:
+            trust: "*"
+          auth: true
+          starttls:
+            enable: true
+          connection-timeout: 5000
+          timeout: 3000
+          write timeout: 5000
