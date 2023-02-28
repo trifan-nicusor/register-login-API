@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class UserDetailService implements UserDetailsService {
+public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;

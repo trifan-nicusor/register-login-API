@@ -4,7 +4,7 @@ import com.demo.email.EmailSender;
 import com.demo.registration.token.ConfirmationToken;
 import com.demo.registration.token.ConfirmationTokenService;
 import com.demo.user.User;
-import com.demo.user.UserDetailService;
+import com.demo.user.UserService;
 import com.demo.user.UserRole;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class RegistrationService {
 
     private final EmailValidator validator;
-    private final UserDetailService userDetailService;
+    private final UserService userService;
     private final ConfirmationTokenService tokenService;
     private final EmailSender emailSender;
 
@@ -26,7 +26,7 @@ public class RegistrationService {
             throw new IllegalStateException("Email not valid!");
         }
 
-        String token = userDetailService.signUp(new User(
+        String token = userService.signUp(new User(
                 request.email(),
                 request.password(),
                 request.firstName(),
@@ -53,7 +53,7 @@ public class RegistrationService {
         }
 
         //LocalDateTime expiredAt = confirmationToken.getExpiresAt();
-        userDetailService.enableUser(confirmationToken.getUser().getEmail());
+        userService.enableUser(confirmationToken.getUser().getEmail());
 
         return "confirmed";
     }
